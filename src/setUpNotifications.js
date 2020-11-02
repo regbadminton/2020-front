@@ -7,13 +7,14 @@ window.addEventListener('beforeinstallprompt', e => {
     console.log('asdasd')
     e.preventDefault()
     deferredPrompt = e
+    console.log(deferredPrompt)
 })
 console.log(1)
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, "+")
+    .replace(/-/g, "+")
     .replace(/_/g, "/");
 
   const rawData = window.atob(base64);
@@ -39,6 +40,7 @@ export default async function() {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
     });
+    console.log(subscription)
     console.log("Push Registered...");
     return "worked";
     } catch (error) {
