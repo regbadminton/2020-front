@@ -6,13 +6,16 @@ import setUpNotifications from "../setUpNotifications";
 
 const Home: React.FC = () => {
   const [showLoading, setShowLoading] = React.useState(true);
+
   const [showAlert, setShowAlert] = React.useState(false);
   const [alertMessage, setAlertMessage] = React.useState("");
+  const [alertButtons, setAlertButtons] = React.useState([{text:""}]);
 
   React.useEffect(()=>{
     const setUp = async ()=> {
-      const alertMessage = await setUpNotifications();
-      setAlertMessage(alertMessage);
+      const alert = await setUpNotifications(setShowAlert, setShowLoading);
+      setAlertMessage(alert.message);
+      setAlertButtons(alert.buttons);
       setShowLoading(false);
       setShowAlert(true);
     }
@@ -34,10 +37,9 @@ const Home: React.FC = () => {
         />
         <IonAlert
           isOpen={showAlert}
-          header={'Alert'}
-          subHeader={'Subtitle'}
-          message={alertMessage}
-          buttons={['OK']}
+          header={alertMessage}
+          message={"Please Click Allow when asked"}
+          buttons={alertButtons}
         />
         <ExploreContainer toggleLoading={toggleLoading} />
       </IonContent>

@@ -17,5 +17,3 @@ self.addEventListener('notificationclick', event => {
   const url = "https://cityofsurrey.perfectmind.com/23615/Store/BookMe4BookingPages/BookingCoursesPage?calendarId=052dfbe4-1178-4a47-afa6-5f2eb6aae9e3&widgetId=b4059e75-9755-401f-a7b5-d7c75361420d";
   event.waitUntil(clients.openWindow(url));
 });
-
-self.addEventListener('fetch', ()=>{})
