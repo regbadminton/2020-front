@@ -39,7 +39,10 @@ const Home: React.FC = () => {
           setShowLoading(true);
           try {
             await createPushSubscription(registration);
-            setTimeout(()=>setShowLoading(false), 1500)
+            setTimeout(()=>{
+              setShowLoading(false)
+              showErrorAlert("You are now subcribed to badminton registration alerts!")
+            }, 1500)
           } catch (error) {
             showErrorAlert(error.message);
           }
